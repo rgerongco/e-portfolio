@@ -4,7 +4,7 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-  /* ---------- Theme (dark / light) ---------- */
+  /* THEME */
   const root = document.documentElement;
   const savedTheme = (() => { try { return localStorage.getItem("theme"); } catch { return null; } })();
   root.setAttribute("data-theme", savedTheme || "dark");
@@ -15,7 +15,7 @@
     try { localStorage.setItem("theme", next); } catch {}
   });
 
-  /* ---------- Navbar: scroll style + mobile menu + active link ---------- */
+  /* NAVBAR */
   const navbar = $("#navbar");
   const navLinks = $("#navLinks");
   const menuBtn = $("#menuBtn");
@@ -47,7 +47,7 @@
   }, { rootMargin: "-45% 0px -50% 0px" });
   sections.forEach(s => spy.observe(s));
 
-  /* ---------- Typing effect ---------- */
+  /* TYPING EFFECT ON THE PROFILE */
   const phrases = [
     "mobile app development",
     "clean UI/UX design",
@@ -71,7 +71,7 @@
   }
   type();
 
-  /* ---------- Reveal on scroll ---------- */
+  /* REVEAL WHILE SCROLLING */
   const revealObs = new IntersectionObserver((entries, obs) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -88,7 +88,7 @@
     revealObs.observe(el);
   });
 
-  /* ---------- Animated counters ---------- */
+  /* COUNTERS WITH ANIMATION */
   const counterObs = new IntersectionObserver((entries, obs) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
@@ -108,7 +108,7 @@
   }, { threshold: 0.6 });
   $$("[data-count]").forEach(el => counterObs.observe(el));
 
-  /* ---------- Skill filters ---------- */
+  /* FILTERS ON THE SKILL PAGE */
   const filterBtns = $$(".filter-btn");
   const skills = $$(".skill");
   filterBtns.forEach(btn => {
@@ -124,7 +124,7 @@
     });
   });
 
-  /* ---------- SweetAlert2 helpers (falls back to the simple toast if the CDN is blocked) ---------- */
+  /* SWEETALERT2 HELP ONCE NOT SHOWING */
   const hasSwal = typeof Swal !== "undefined";
   const swalBase = { confirmButtonText: "OK", buttonsStyling: true };
   const Toast = hasSwal && Swal.mixin({
@@ -142,7 +142,7 @@
     toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
   }
 
-  /* ---------- Click-to-copy contact cards ---------- */
+  /* COPY TO CLIPBOARD */
   async function copyText(text) {
     try {
       await navigator.clipboard.writeText(text);
@@ -175,7 +175,7 @@
       }
     }));
 
-  /* ---------- Contact form ---------- */
+  /* CONTACT FORM IN THE CONTACT PAGE */
   const form = $("#contactForm");
   const alertBox = (opts) => hasSwal
     ? Swal.fire({ ...swalBase, ...opts })
@@ -230,7 +230,7 @@
     form.reset();
   });
 
-  /* ---------- Fast scroll with a bounce at the destination ---------- */
+  /* SCROLL WITH BOUNCE */
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let scrollRaf = null;
 
@@ -289,7 +289,7 @@
     });
   });
 
-  /* ---------- Binary rain background ---------- */
+  /* BINARY RAIN BACKGROUND */
   (function binaryRain() {
     const canvas = $("#binary-rain");
     if (!canvas) return;
@@ -409,6 +409,6 @@
     start();
   })();
 
-  /* ---------- Footer year ---------- */
+  /* FOOTER */
   $("#year").textContent = new Date().getFullYear();
 })();
