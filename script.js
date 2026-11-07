@@ -217,7 +217,7 @@
 
     // OPTION B: opens the visitor's email app with the message pre-filled.
     // Replace the address below with your own email.
-    const to = "gerongcorandolph@email.com";
+    const to = "gerongcorandolph@gmail.com";
     const subject = encodeURIComponent(`Portfolio message from ${name}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
 
